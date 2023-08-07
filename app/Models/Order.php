@@ -18,6 +18,7 @@ class Order extends Model
         'paymentSlip',
         'paymentId',
         'itemId',
+        'categoryId',
         'userId'
     ];
 }
