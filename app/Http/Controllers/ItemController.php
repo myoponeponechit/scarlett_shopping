@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Item;
+use App\Models\Category;
 
 class ItemController extends Controller
 {
@@ -11,7 +13,9 @@ class ItemController extends Controller
      */
     public function index()
     {
-        return view('items.index');
+        $categories = category::all();
+        $items = item::all();
+        return view('items.index', compact('items','categories'));
     }
 
     /**
@@ -35,7 +39,12 @@ class ItemController extends Controller
      */
     public function show(string $id)
     {
-        return view('items.detail');
+        //dd($id);
+        $item = Item::find($id);
+        $item_categoryId = $item->categoryId;
+        //dd($item_categoryId);
+        $item_categories = Item::where('categoryId',$item_categoryId)->orderBy('id','DESC')->limit(4)->get();
+        return view('items.detail', compact('item','item_categories'));
     }
 
     /**
