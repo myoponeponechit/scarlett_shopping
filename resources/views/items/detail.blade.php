@@ -17,12 +17,12 @@
                         @endif
                         </div>
                         <p class="lead">{{$item->description}}</p>
-                        <div class="d-flex">
-                            <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
-                            <button class="btn btn-outline-dark flex-shrink-0" type="button">
-                                <i class="bi-cart-fill me-1"></i>
-                                Add to cart
-                            </button>
+                        <div class="d-flex product_actions">
+                            <input class="form-control text-center me-3 qty" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
+                            <button class="btn btn-outline-dark flex-shrink-0 addToCart" id="" type="button" data-id="{{$item->id}}" data-name="{{$item->name}}" data-image="{{$item->image}}" data-price="{{$item->price}}" data-discount="{{$item->discount}}">
+                                                <i class="bi-cart-fill me-1"></i>
+                                                Add to cart
+                                            </button>
                         </div>
                     </div>
                 </div>
@@ -56,9 +56,18 @@
                                 </div>
                                 <!-- Product actions-->
                                 <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                    <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{{route('items.show',$item->id)}}">View 
-                                        Option
-                                    </a></div>
+                                <div class="text-center row">
+                                        <div class="col-md-4">
+                                            <a class="btn btn-outline-dark mt-auto" href="{{route('items.show',$item->id)}}">View </a>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <input type="hidden" class="qty" value="1">
+                                            <button class="btn btn-outline-dark flex-shrink-0 addToCart" id="" type="button" data-id="{{$item->id}}" data-name="{{$item->name}}" data-image="{{$item->image}}" data-price="{{$item->price}}" data-discount="{{$item->discount}}">
+                                                <!-- <i class="bi-cart-fill me-1"></i> -->
+                                                Add to cart
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

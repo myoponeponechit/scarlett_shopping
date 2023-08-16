@@ -37,14 +37,43 @@ class ItemController extends Controller
     /**
      * Display the specified resource.
      */
+    public function itemCategory(string $category_id)
+    {
+        $itemCategories=Item::where('categoryId',$category_id)->get();
+        return view('items.item_category',compact('itemCategories'));
+    }
+
+    public function itemCart(){
+        return view('items.item_carts');
+    }
+
     public function show(string $id)
     {
-        //dd($id);
+        // //dd($id);
+        // $item = Item::find($id);
+        // $item_categoryId = $item->categoryId;
+        // //dd($item_categoryId);
+        // $item_categories = Item::where('categoryId',$item_categoryId)->orderBy('id','DESC')->limit(4)->get();
+        // return view('items.detail', compact('item','item_categories'));
+
         $item = Item::find($id);
-        $item_categoryId = $item->categoryId;
-        //dd($item_categoryId);
-        $item_categories = Item::where('categoryId',$item_categoryId)->orderBy('id','DESC')->limit(4)->get();
-        return view('items.detail', compact('item','item_categories'));
+
+        if ($item !== null) {
+            $item_categoryId = $item->categoryId;
+            
+            $item_categories = Item::where('categoryId', $item_categoryId)
+                                    ->where('id', '<>', $id) // Exclude the current item
+                                    ->orderBy('id', 'DESC')
+                                    ->limit(4)
+                                    ->get();
+            
+            return view('items.detail', compact('item', 'item_categories'));
+        }
+// } else {
+//     // Handle the case when the item is not found
+//     return redirect()->route('items.index')->with('error', 'Item not found.');
+// }
+
     }
 
     /**
