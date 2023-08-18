@@ -39,7 +39,7 @@ class ItemController extends Controller
      */
     public function itemCategory(string $category_id)
     {
-        $itemCategories=Item::where('categoryId',$category_id)->get();
+        $itemCategories=Item::where('category_id',$category_id)->get();
         return view('items.item_category',compact('itemCategories'));
     }
 
@@ -61,7 +61,7 @@ class ItemController extends Controller
         if ($item !== null) {
             $item_categoryId = $item->categoryId;
             
-            $item_categories = Item::where('categoryId', $item_categoryId)
+            $item_categories = Item::where('category_id', $item_categoryId)
                                     ->where('id', '<>', $id) // Exclude the current item
                                     ->orderBy('id', 'DESC')
                                     ->limit(4)

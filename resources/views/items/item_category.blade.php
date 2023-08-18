@@ -3,6 +3,14 @@
 <!-- @php
     var_dump($itemCategories);
 @endphp -->
+<!-- Header-->
+        <header class="bg-dark py-5">
+            <div class="container px-4 px-lg-5 my-5">
+                <div class="text-center text-white">
+                    <h1 class="display-4 fw-bolder">Discover, Shop, Repeat: Your One-Stop Retail Therapy Destination!</h1>
+                </div>
+            </div>
+        </header>
 <!-- Section-->
         <section class="py-5">
             <div class="container px-4 px-lg-5 mt-5">

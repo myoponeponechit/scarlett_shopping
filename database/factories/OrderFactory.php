@@ -21,10 +21,10 @@ class OrderFactory extends Factory
             'qty' => $this->faker->ean8,
             'total' => $this->faker->ean8,
             'paymentSlip' => $this->faker->imageUrl,
-            'paymentId' => rand(1,10),
-            'itemId' => rand(1,10),
-            'categoryId' => rand(1,10),
-            'userId' => rand(1,10)
+            'payment_id' => rand(1,10),
+            'item_id' => rand(1,10),
+            'category_id' => rand(1,10),
+            'user_id' => rand(1,10)
         ];
     }
 }
